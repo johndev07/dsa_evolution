@@ -65,3 +65,101 @@ let pow2 = isPowerOfTwo(2);
 let pow3 = isPowerOfTwo(5);
 
 console.log("isPowerOfTwo", pow1, pow2, pow3);
+
+// q5) find the fibonaaci number using recurrsion
+
+function fibRec(n) {
+  if (n < 2) return n;
+  return fibRec(n - 1) + fibRec(n - 2);
+}
+
+console.log("recursive fibonacci", fibRec(0));
+console.log("recursive fibonacci", fibRec(1));
+console.log("recursive fibonacci", fibRec(6));
+
+// q5)  find the factorial of the given number using recursion
+
+function factRec(n) {
+  if (n === 0) return 1;
+  return n * factRec(n - 1);
+}
+
+console.log("recursive factorial", factRec(0));
+console.log("recursive factorial", factRec(1));
+console.log("recursive factorial", factRec(5));
+
+// q7) find the number from the given array using linear search
+
+const linearArr = [4, 7, 2, 9, 1, 5, 8, 3, 6, 0];
+
+function linearSearch(arr, target) {
+  for (num in arr) {
+    if (arr[num] == target) return num;
+  }
+  return -1;
+}
+
+console.log("linearSearch", linearSearch(linearArr, 6));
+console.log("linearSearch", linearSearch(linearArr, 16));
+
+// q7) find the number from the sorted array using binary search
+
+let sortedArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+function binarySearch(arr, target) {
+  let right = 0;
+  let left = arr.length - 1;
+  while (right <= left) {
+    let middle = Math.floor((right + left) / 2);
+    if (arr[middle] == target) return middle;
+    if (target > arr[middle]) {
+      right = middle + 1;
+    } else {
+      left = middle - 1;
+    }
+  }
+  return -1;
+}
+
+console.log("binary search", binarySearch(sortedArr, 10));
+console.log("binary search", binarySearch(sortedArr, 6));
+console.log("binary search", binarySearch(sortedArr, 20));
+
+// q7) find the number from the sorted array using recursive binary search
+
+function search(arr, target, start, end) {
+  let middle = Math.floor((start + end) / 2);
+  if (start > end) return -1;
+  if (arr[middle] === target) return middle;
+  if (target > arr[middle]) {
+    return search(arr, target, middle + 1, end);
+  } else {
+    return search(arr, target, start, middle - 1);
+  }
+}
+
+function recursiveBinarySearch(arr, target) {
+  return search(arr, target, 0, arr.length - 1);
+}
+
+console.log("recursive binary search", recursiveBinarySearch(sortedArr, 10));
+console.log("recursive binary search", recursiveBinarySearch(sortedArr, 6));
+console.log("recursive binary search", recursiveBinarySearch(sortedArr, 20));
+
+// q8) do a bubble sort on an unsorted array ?
+let bubsort = [15, 3, 8, 42, 1, 27, 19, 6, 33, 11];
+
+function bubbleSort(arr) {
+  let swapped = true;
+  while (swapped) {
+    swapped = false;
+    for (let i = 0; i < arr.length - 1; i++) {
+      if (arr[i] > arr[i + 1]) {
+        [arr[i + 1], arr[i]] = [arr[i], arr[i + 1]];
+        swapped = true;
+      }
+    }
+  }
+}
+
+bubbleSort(bubsort);
+console.log("bubbleSort", bubsort);
